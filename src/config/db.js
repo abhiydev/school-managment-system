@@ -2,6 +2,7 @@ import { config } from 'dotenv';
 import mysql from 'mysql2';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import env from '../dotenv.js'
 
 // Mimic `__dirname` in ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -12,10 +13,10 @@ config({ path: path.resolve(__dirname, '../../.env') });
 
 // Create a connection without specifying the database
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  host: env.host,
+  user: env.user,
+  password: env.password,
+  port: env.mysqlport,
 });
 
 let db; // Declare `db` at the module level

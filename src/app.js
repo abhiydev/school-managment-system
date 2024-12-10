@@ -3,6 +3,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { addSchool, listSchools, homePage } from './controllers/schoolController.js';
+import env from './dotenv.js';
 
 // Mimic `__dirname` in ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -13,7 +14,7 @@ config({ path: path.resolve(__dirname, './.env') });
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = env.port || 3000;
 
 // Middleware
 app.use(express.json());
@@ -26,10 +27,10 @@ app.get('/', homePage)
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running at thttp://localhost:${PORT} && ${process.env.DOMAIN || "DOMAIN NOT YET ASSIGNED"}`);
+  console.log(`Server is running at thttp://localhost:${PORT} && ${env.domain || "DOMAIN NOT YET ASSIGNED"}`);
   console.log('Loaded environment variables:', {
-    DB_HOST: process.env.DB_HOST,
-    DB_USER: process.env.DB_USER,
-    DB_NAME: process.env.DB_NAME,
+    DB_HOST: env.host,
+    DB_USER: env.user,
+    DB_NAME: env.database,
   });
 });
