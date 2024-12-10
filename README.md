@@ -1,3 +1,7 @@
+Here is the updated documentation with the new URL:
+
+---
+
 # School Management System API
 
 The **School Management System API** allows users to manage schools by adding new schools and retrieving a list of schools sorted by their distance from a specified location.
@@ -51,7 +55,7 @@ On success, the API returns a JSON object with a success message and the `school
 
 **URL Example:**  
 ```
-http://localhost:3000/listSchools?latitude=22.7196&longitude=75.8577
+https://school-managment-system-production-9bc9.up.railway.app/listSchools?latitude=22.7196&longitude=75.8577
 ```
 
 **Response:**  
@@ -88,7 +92,7 @@ The API returns a list of schools, each including the distance from the specifie
    npm start
    ```
 
-   The server will run on `http://localhost:3000`.
+   The server will run on `https://school-managment-system-production-9bc9.up.railway.app`.
 
 ---
 
@@ -119,10 +123,9 @@ Import the following Postman collection to test the API:
           "raw": "{\n  \"name\": \"Abhishek High School\",\n  \"address\": \"123 Main Street, Indore\",\n  \"latitude\": 22.7196,\n  \"longitude\": 75.8577\n}"
         },
         "url": {
-          "raw": "http://localhost:3000/schools",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3000",
+          "raw": "https://school-managment-system-production-9bc9.up.railway.app/schools",
+          "protocol": "https",
+          "host": ["school-managment-system-production-9bc9", "up", "railway", "app"],
           "path": ["schools"]
         }
       },
@@ -134,10 +137,9 @@ Import the following Postman collection to test the API:
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/listSchools?latitude=22.7196&longitude=75.8577",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3000",
+          "raw": "https://school-managment-system-production-9bc9.up.railway.app/listSchools?latitude=22.7196&longitude=75.8577",
+          "protocol": "https",
+          "host": ["school-managment-system-production-9bc9", "up", "railway", "app"],
           "path": ["listSchools"],
           "query": [
             {
@@ -169,3 +171,7 @@ Import the following Postman collection to test the API:
 - Ensure the database is set up before running the application. The application creates the database and tables if they do not exist.
 
 For any issues or contributions, please open a GitHub issue or pull request.
+
+---
+
+This should now use the updated production URL on Railway for testing and deployment!
