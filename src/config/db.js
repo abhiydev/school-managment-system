@@ -2,7 +2,6 @@ import { config } from 'dotenv';
 import mysql from 'mysql2';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import env from '../dotenv.js'
 
 // Mimic `__dirname` in ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -13,31 +12,32 @@ config({ path: path.resolve(__dirname, '../../.env') });
 
 // Create a connection without specifying the database
 const connection = mysql.createConnection({
-  host: env.host,
-  user: env.user,
-  password: env.password,
-  port: env.mysqlport,
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  port: process.env.MYSQLPORT,
 });
 
 let db; // Declare `db` at the module level
 
 // Ensure the database and table exist
-connection.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\``, (err) => {
+connection.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.MYSQLDATABASE}\``, (err) => {
   if (err) {
     console.error('Failed to create database:', err);
     connection.end();
     return;
   }
 
-  console.log(`Database "${process.env.DB_NAME}" ensured to exist`);
+  console.log(`Database "${process.env.MYSQLDATABASE}" ensured to exist`);
 
   // Connect to the database after ensuring it exists
   db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT
+
   });
 
   // Test the connection
