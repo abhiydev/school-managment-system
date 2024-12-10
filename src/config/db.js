@@ -10,13 +10,16 @@ const __dirname = path.dirname(__filename);
 // Load environment variables from .env file
 config({ path: path.resolve(__dirname, '../../.env') });
 
+// Check if we're in a production environment (Railway)
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Get the database connection URL from the environment (either local or Railway)
+const dbUrl = isProduction
+  ? process.env.DATABASE_URL // Railway Database URL (set in Railway environment variables)
+  : `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
+
 // Create a connection without specifying the database
-const connection = mysql.createConnection({
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  port: process.env.MYSQLPORT,
-});
+const connection = mysql.createConnection(dbUrl);
 
 let db; // Declare `db` at the module level
 
@@ -31,14 +34,7 @@ connection.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.MYSQLDATABASE}\`
   console.log(`Database "${process.env.MYSQLDATABASE}" ensured to exist`);
 
   // Connect to the database after ensuring it exists
-  db = mysql.createConnection({
-    host: process.env.MYSQLHOST,
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT
-
-  });
+  db = mysql.createConnection(dbUrl);
 
   // Test the connection
   db.connect((err) => {
