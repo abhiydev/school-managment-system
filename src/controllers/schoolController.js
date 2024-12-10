@@ -2,6 +2,12 @@ import { db } from "../config/db.js";
 import haversine from "haversine-distance";
 
 // Function to add a new school
+async function homePage(req, res) {
+  return res.json({
+    msg: "This is home page",
+  });
+}
+
 async function addSchool(req, res) {
   const { name, address, latitude, longitude } = req.body;
 
@@ -70,4 +76,4 @@ async function listSchools(req, res) {
   });
 }
 
-export { addSchool, listSchools };
+export { addSchool, listSchools, homePage };

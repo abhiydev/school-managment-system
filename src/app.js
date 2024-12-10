@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import { addSchool, listSchools } from './controllers/schoolController.js';
+import { addSchool, listSchools, homePage } from './controllers/schoolController.js';
 
 // Mimic `__dirname` in ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -22,10 +22,11 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.post('/addSchool', addSchool);
 app.get('/listSchools', listSchools);
+app.get('/', homePage)
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Server is running at thttp://localhost:${PORT} && ${process.env.DOMAIN || "DOMAIN NOT YET ASSIGNED"}`);
   console.log('Loaded environment variables:', {
     DB_HOST: process.env.DB_HOST,
     DB_USER: process.env.DB_USER,
