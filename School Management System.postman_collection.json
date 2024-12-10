@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "3b20c5bf-72bf-422a-bcad-26e507c2d4a7",
+		"name": "School Management System",
+		"description": "Collection to test the School Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36439843"
+	},
+	"item": [
+		{
+			"name": "Add School",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Abhishek High School\",\n  \"address\": \"123 Main Street, Indore\",\n  \"latitude\": 22.7196,\n  \"longitude\": 75.8577\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/addSchool",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addSchool"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Schools",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/listSchools?latitude=22.7196&longitude=75.8577",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listSchools"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "22.7196"
+						},
+						{
+							"key": "longitude",
+							"value": "75.8577"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
