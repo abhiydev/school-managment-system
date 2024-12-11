@@ -5,8 +5,11 @@ import haversine from "haversine-distance";
 async function homePage(req, res) {
   return res.json({
     msg: "This is home page",
+  },
+  {
     doccumentatioin: 'https://github.com/abhiydev/school-managment-system'
-  });
+  }
+);
 }
 
 async function addSchool(req, res) {
