@@ -3,13 +3,12 @@ import haversine from "haversine-distance";
 
 // Function to add a new school
 async function homePage(req, res) {
-  return res.json({
-    msg: "This is home page",
-  },
-  {
-    doccumentatioin: 'https://github.com/abhiydev/school-managment-system'
-  }
-);
+  return res.json(
+    {
+      msg: "This is home page",
+      doccumentatioin: "https://github.com/abhiydev/school-managment-system"
+    }
+  );
 }
 
 async function addSchool(req, res) {
